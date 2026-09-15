@@ -62,6 +62,12 @@
   	enable = false;
 	excludePackages = with pkgs; [xterm];
 	};
+  
+  # Enable flatpak
+  services.flatpak.enable = true;
+
+  # Enable nix-ld to unfuck generic executables
+  programs.nix-ld.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.plasma-login-manager.enable = true;
