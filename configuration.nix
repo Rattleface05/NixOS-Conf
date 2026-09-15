@@ -151,6 +151,17 @@
     cowsay
     fortune
     inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default
+    ripgrep
+    lua-language-server
+    nodejs
+    tree
+    fzf
+    bash-completion
+    python3
+    zip
+    unzip
+    haskell-language-server
+    ghc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
