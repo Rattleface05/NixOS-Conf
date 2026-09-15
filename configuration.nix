@@ -196,6 +196,15 @@
     wl-clipboard
     fd
     imagemagick
+    (pkgs.writeShellApplication {
+      name = "ns";
+      runtimeInputs = with pkgs; [
+        fzf
+        nix-search-tv
+      ];
+      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+    })
+    imgbrd-grabber
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
