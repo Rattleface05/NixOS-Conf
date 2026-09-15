@@ -139,7 +139,7 @@
   # Install firefox.
   programs.firefox = {
     enable = true;
-    preferenceStatus = "user";
+    preferencesStatus = "user";
   };
 
   # Install steam.
