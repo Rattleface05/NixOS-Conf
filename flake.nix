@@ -33,7 +33,7 @@
     }@inputs:
     {
 
-      nixosConfigurations.pizda = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.cratita = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         specialArgs = { inherit inputs; };
