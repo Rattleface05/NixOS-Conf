@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = false;
@@ -20,9 +25,9 @@
   boot.loader.grub.useOSProber = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.extraEntries = ''
-  menuentry "UEFI Firmware Settings" {
-    fwsetup
-  }
+    menuentry "UEFI Firmware Settings" {
+      fwsetup
+    }
   '';
 
   # Use CachyOS kernel.
@@ -58,16 +63,29 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver = { 
-  	enable = false;
-	excludePackages = with pkgs; [xterm];
-	};
-  
+  services.xserver = {
+    enable = false;
+    excludePackages = with pkgs; [ xterm ];
+  };
+
   # Enable flatpak
   services.flatpak.enable = true;
 
   # Enable nix-ld to unfuck generic executables
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      sqlite
+    ];
+  };
+
+  # LazyVim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.plasma-login-manager.enable = true;
@@ -109,10 +127,9 @@
   users.users."dumi" = {
     isNormalUser = true;
     description = "dumi";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  kdePackages.kate
-    #  thunderbird
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
   };
 
@@ -124,9 +141,12 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   # Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -141,6 +161,7 @@
     ghostty
     git
     github-cli
+    lazygit
     rustc
     cargo
     vscode
@@ -162,6 +183,12 @@
     unzip
     haskell-language-server
     ghc
+    vimPlugins.LazyVim
+    vimPlugins.yanky-nvim
+    sqlite
+    wl-clipboard
+    fd
+    imagemagick
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -208,4 +235,3 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-

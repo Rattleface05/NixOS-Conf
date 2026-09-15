@@ -9,11 +9,15 @@ inputs = {
     	};
 
 	nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+	home-manager = {
+      		url = "github:nix-community/home-manager";
+      		inputs.nixpkgs.follows = "nixpkgs";
+    	};
 
 
 };
 
-outputs = { self, nixpkgs, nix-cachyos-kernel, ... }@inputs: {
+outputs = { self, nixpkgs, nix-cachyos-kernel, home-manager, ... }@inputs: {
 
 #environment.systemPackages = [
 #    inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default # Wayland
@@ -30,13 +34,31 @@ nixosConfigurations.pizda = nixpkgs.lib.nixosSystem {
     ./configuration.nix
 
     # CachyOS kernel overlay
-    {
-      nixpkgs.overlays = [
-        # Uses the exact nixpkgs revision expected by the
-        # nix-cachyos-kernel binary cache.
-        nix-cachyos-kernel.overlays.pinned
-      ];
-    }
+          {
+            nixpkgs.overlays = [
+              # Use the exact nixpkgs revision as defined in this repo to ensure binary cache hits.
+              nix-cachyos-kernel.overlays.pinned
+
+              # Alternatively, use nixpkgs from your environment, nixpkgs.config will apply.
+              # Note: may not hit binary cache; kernel will need to be built locally.
+              # nix-cachyos-kernel.overlays.default
+
+              # Only use one of the two overlays!
+            ];
+	}
+
+    	home-manager.nixosModules.default
+	{
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; }; #If you want access to inputs in your home.nix
+	      backupFileExtension = "-backup";
+              users.dumi = import ./home.nix; # replace <USERNAME> with your actual username
+            };
+          }
+	
+
   ];
 };
 
