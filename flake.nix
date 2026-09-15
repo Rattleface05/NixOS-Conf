@@ -1,39 +1,48 @@
 {
-description = "NixOS configuration with CachyOS kernel";
+  description = "NixOS configuration with CachyOS kernel";
 
-inputs = {
-	nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
- 	kwin-effects-better-blur-dx = {
-      		url = "github:xarblu/kwin-effects-better-blur-dx";
-      		inputs.nixpkgs.follows = "nixpkgs";
-    	};
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    kwin-effects-better-blur-dx = {
+      url = "github:xarblu/kwin-effects-better-blur-dx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-	nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
-	home-manager = {
-      		url = "github:nix-community/home-manager";
-      		inputs.nixpkgs.follows = "nixpkgs";
-    	};
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-};
+    lazyvim = {
+      url = "github:pfassina/lazyvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-outputs = { self, nixpkgs, nix-cachyos-kernel, home-manager, ... }@inputs: {
+  };
 
-#environment.systemPackages = [
-#    inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default # Wayland
-#    inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.x11 # X11
-#  ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-cachyos-kernel,
+      home-manager,
+      lazyvim,
+      ...
+    }@inputs:
+    {
 
-nixosConfigurations.pizda = nixpkgs.lib.nixosSystem {
-	system = "x86_64-linux";
-	
-	specialArgs = {inherit inputs;};
+      nixosConfigurations.pizda = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
 
-  modules = [
-    # Your normal NixOS configuration
-    ./configuration.nix
+        specialArgs = { inherit inputs; };
 
-    # CachyOS kernel overlay
+        modules = [
+          # Your normal NixOS configuration
+          ./configuration.nix
+
+          # CachyOS kernel overlay
           {
             nixpkgs.overlays = [
               # Use the exact nixpkgs revision as defined in this repo to ensure binary cache hits.
@@ -45,27 +54,23 @@ nixosConfigurations.pizda = nixpkgs.lib.nixosSystem {
 
               # Only use one of the two overlays!
             ];
-	}
+          }
 
-    	home-manager.nixosModules.default
-	{
+          home-manager.nixosModules.default
+          {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; }; #If you want access to inputs in your home.nix
-	      backupFileExtension = "-backup";
+              extraSpecialArgs = { inherit inputs; }; # If you want access to inputs in your home.nix
+              backupFileExtension = "-backup";
               users.dumi = import ./home.nix; # replace <USERNAME> with your actual username
+
             };
           }
-	
 
-  ];
-};
+        ];
+      };
 
-
-};
-
+    };
 
 }
-
-

@@ -75,7 +75,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      sqlite
+      #sqlite
     ];
   };
 
@@ -183,9 +183,7 @@
     unzip
     haskell-language-server
     ghc
-    vimPlugins.LazyVim
-    vimPlugins.yanky-nvim
-    sqlite
+    statix
     wl-clipboard
     fd
     imagemagick
