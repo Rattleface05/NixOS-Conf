@@ -38,6 +38,7 @@
 
   };
   # Use CachyOS kernel.
+  # htop
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-x86_64-v3;
 
   networking.hostName = "cratita"; # Define your hostname.
@@ -82,16 +83,14 @@
     ];
   };
 
-  # LazyVim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.plasma-login-manager.enable = true;
+  services.displayManager.plasma-login-manager.settings = {
+    Autologin = {
+      Session = "plasma.desktop";
+      User = "dumi";
+    };
+  };
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
@@ -107,6 +106,15 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # ClamAV freshclam
+  services.clamav.updater.enable = true;
+
+  # QBitTorrent
+  services.qbittorrent = {
+    enable = true;
+    package = pkgs.qbittorrent-enhanced;
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -144,6 +152,23 @@
 
   # Install steam.
   programs.steam.enable = true;
+  programs.steam.extraCompatPackages = with pkgs; [
+    proton-ge-bin
+  ];
+
+  # Gmamemode
+  programs.gamemode.enable = true;
+
+  # GPU Screen Recoder
+  programs.gpu-screen-recorder.ui.enable = true;
+
+  # LazyVim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -176,6 +201,7 @@
     vscode
     kdePackages.kate
     kdePackages.filelight
+    kdePackages.xdg-desktop-portal-kde
     gcc
     fastfetch
     cowsay
@@ -187,6 +213,7 @@
     tree
     fzf
     bash-completion
+    nix-bash-completions
     python3
     zip
     unzip
@@ -205,6 +232,29 @@
       text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
     })
     imgbrd-grabber
+    audacity
+    microcode-amd
+    bottles
+    btop
+    htop
+    btrfs-progs
+    btrfs-assistant
+    clamav
+    cmatrix
+    gdu
+    gimp
+    godot
+    protonplus
+    prismlauncher
+    pipx
+    ani-cli
+    deadlock-mod-manager
+    pipes-rs
+    rar
+    stremio-linux-shell
+    speedtest-rs
+    wtf
+    wtfis
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

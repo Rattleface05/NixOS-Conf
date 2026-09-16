@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -29,6 +34,7 @@
       nix-cachyos-kernel,
       home-manager,
       lazyvim,
+      aagl,
       ...
     }@inputs:
     {
@@ -54,6 +60,18 @@
 
               # Only use one of the two overlays!
             ];
+          }
+
+          # Anime Team config
+          {
+            imports = [ aagl.nixosModules.default ];
+            nix.settings = aagl.nixConfig; # Set up Cachix
+            programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+            programs.anime-games-launcher.enable = false;
+            programs.honkers-railway-launcher.enable = true;
+            programs.honkers-launcher.enable = false;
+            programs.wavey-launcher.enable = false;
+            programs.sleepy-launcher.enable = true;
           }
 
           home-manager.nixosModules.default

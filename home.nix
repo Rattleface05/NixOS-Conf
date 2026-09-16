@@ -18,27 +18,37 @@
     enable = true;
 
     extras = {
-      lang.nix.enable = true;
-      lang.python = {
-        enable = true;
-        installDependencies = true; # Install ruff
-        installRuntimeDependencies = false; # Install python3
+      lang = {
+        nix.enable = true;
+        python = {
+          enable = true;
+          installDependencies = true; # Install ruff
+          installRuntimeDependencies = false; # Install python3
+        };
+
+        rust = {
+          enable = true;
+          installDependencies = true;
+          installRuntimeDependencies = false;
+        };
+
+        cmake.enable = true;
+        clangd.enable = true;
+
+        git.enable = true;
+
+        haskell.enable = true;
+        docker = {
+          enable = true;
+          installDependencies = true;
+          installRuntimeDependencies = false;
+        };
       };
 
-      lang.rust = {
-        enable = true;
-        installDependencies = true;
-        installRuntimeDependencies = false;
+      coding = {
+        yanky.enable = true;
+        luasnip.enable = true;
       };
-
-      lang.cmake.enable = true;
-      lang.docker = {
-        enable = true;
-        installDependencies = true;
-        installRuntimeDependencies = false;
-      };
-
-      coding.yanky.enable = true;
 
       linting.eslint.enable = true;
 
