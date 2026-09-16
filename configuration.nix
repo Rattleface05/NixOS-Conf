@@ -174,6 +174,9 @@
   # Virt Manager
   programs.virt-manager.enable = true;
 
+  # Enable Libvirtd
+  virtualisation.libvirtd.enable = true;
+
   # LazyVim
   programs.neovim = {
     enable = true;
