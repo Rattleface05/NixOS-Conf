@@ -159,14 +159,14 @@
   # Gmamemode
   programs.gamemode.enable = true;
 
-  # Lutris
-  programs.lutris.enable = true;
-  programs.lutris.extraPackages = with pkgs; [
-    mangohud
-    winetricks
-    gamemode
-    umu-launcher
-  ];
+  ## Lutris
+  #programs.lutris.enable = true;
+  #programs.lutris.extraPackages = with pkgs; [
+  #  mangohud
+  #  winetricks
+  #  gamemode
+  #  umu-launcher
+  #];
 
   # GPU Screen Recoder
   programs.gpu-screen-recorder.ui.enable = true;
@@ -263,6 +263,7 @@
     ani-cli
     deadlock-mod-manager
     mangohud
+    lutris
     pipes-rs
     rar
     stremio-linux-shell
