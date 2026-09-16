@@ -171,6 +171,9 @@
   # GPU Screen Recoder
   programs.gpu-screen-recorder.ui.enable = true;
 
+  # Virt Manager
+  programs.virt-manager.enable = true;
+
   # LazyVim
   programs.neovim = {
     enable = true;
@@ -270,6 +273,7 @@
     speedtest-rs
     wtf
     wtfis
+    onlyoffice-desktopeditors
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
