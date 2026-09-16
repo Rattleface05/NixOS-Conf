@@ -111,10 +111,10 @@
   services.clamav.updater.enable = true;
 
   # QBitTorrent
-  services.qbittorrent = {
-    enable = true;
-    package = pkgs.qbittorrent-enhanced;
-  };
+  #services.qbittorrent = {
+  #  enable = true;
+  #  package = pkgs.qbittorrent-enhanced;
+  #};
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -159,6 +159,15 @@
   # Gmamemode
   programs.gamemode.enable = true;
 
+  # Lutris
+  programs.lutris.enable = true;
+  programs.lutris.extraPackages = with pkgs; [
+    mangohud
+    winetricks
+    gamemode
+    umu-launcher
+  ];
+
   # GPU Screen Recoder
   programs.gpu-screen-recorder.ui.enable = true;
 
@@ -181,6 +190,9 @@
 
   # Optimize store
   nix.settings.auto-optimise-store = true;
+
+  # Max 2 jobs
+  nix.settings.max-jobs = 2;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -235,6 +247,7 @@
     audacity
     microcode-amd
     bottles
+    qbittorrent-enhanced
     btop
     htop
     btrfs-progs
@@ -249,6 +262,7 @@
     pipx
     ani-cli
     deadlock-mod-manager
+    mangohud
     pipes-rs
     rar
     stremio-linux-shell
