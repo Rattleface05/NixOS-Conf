@@ -49,6 +49,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # No firewall,  i like it raw
+  networking.firewall.enable = false;
+
   # Set your time zone.
   time.timeZone = "Europe/Bucharest";
 
@@ -69,10 +72,10 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver = {
-    enable = false;
-    excludePackages = with pkgs; [ xterm ];
-  };
+  #services.xserver = {
+  #  enable = false;
+  #  excludePackages = with pkgs; [ xterm ];
+  #};
 
   # Enable flatpak
   services.flatpak.enable = true;
@@ -98,6 +101,8 @@
     plasma-browser-integration
     konsole
     kwin-x11
+    kwallet
+    kwalletmanager
   ];
 
   # Configure keymap in X11
@@ -157,6 +162,8 @@
   programs.steam.extraCompatPackages = with pkgs; [
     proton-ge-bin
   ];
+  programs.steam.remotePlay.openFirewall = true;
+  programs.steam.dedicatedServer.openFirewall = true;
 
   # Gmamemode
   programs.gamemode.enable = true;
@@ -171,6 +178,7 @@
   #];
 
   # GPU Screen Recoder
+  programs.gpu-screen-recorder.enable = true;
   programs.gpu-screen-recorder.ui.enable = true;
 
   # Virt Manager
@@ -265,6 +273,7 @@
     gimp
     godot
     protonplus
+    proton-ge-bin
     prismlauncher
     pipx
     ani-cli
@@ -278,6 +287,7 @@
     wtf
     wtfis
     onlyoffice-desktopeditors
+    gpu-screen-recorder-ui
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
