@@ -273,7 +273,6 @@
     gimp
     godot
     protonplus
-    proton-ge-bin
     prismlauncher
     pipx
     ani-cli
