@@ -200,6 +200,12 @@
     vimAlias = true;
   };
 
+  # Nix Helper
+  programs.nh = {
+    flake = "/home/dumi/nixos-conf";
+    enable = true;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
