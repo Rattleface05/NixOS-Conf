@@ -40,6 +40,8 @@
   # Use CachyOS kernel.
   # htop
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-x86_64-v3;
+  # For lto extra power bitch
+  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
 
   networking.hostName = "cratita"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -105,7 +107,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # ClamAV freshclam
   services.clamav.updater.enable = true;
@@ -219,7 +221,6 @@
     vscode
     kdePackages.kate
     kdePackages.filelight
-    kdePackages.xdg-desktop-portal-kde
     gcc
     fastfetch
     cowsay
