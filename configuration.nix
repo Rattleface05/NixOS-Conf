@@ -278,6 +278,8 @@
     gimp
     godot
     protonplus
+    shadps4-qtlauncher
+    r2modman
     prismlauncher
     pipx
     ani-cli
