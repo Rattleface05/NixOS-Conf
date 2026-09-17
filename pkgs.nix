@@ -31,6 +31,7 @@
     fzf
     bash-completion
     nix-bash-completions
+    nixd
     python3
     zip
     unzip

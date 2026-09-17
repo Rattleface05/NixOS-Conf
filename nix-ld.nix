@@ -1,5 +1,5 @@
 # I hope i never have to touch this file ever again
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # Enable nix-ld to unfuck generic executables
   programs.nix-ld = {

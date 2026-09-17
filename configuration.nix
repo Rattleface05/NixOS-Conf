@@ -104,8 +104,6 @@
     plasma-browser-integration
     konsole
     kwin-x11
-    kwallet
-    kwalletmanager
   ];
 
   # Configure keymap in X11
@@ -217,6 +215,9 @@
   # Max 2 jobs
   nix.settings.max-jobs = 2;
 
+  # Nix LSP stuff
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -236,5 +237,5 @@
   # system.copySystemConfiguration = true;
 
   system.stateVersion = "26.05"; # Did you read the comment?
-
+  # no i didn't i can't read sorry
 }

@@ -57,10 +57,59 @@
       ui.smear-cursor.enable = true;
     };
 
+    plugins = {
+      lsp = inputs.lazyvim.lib.lazyConfig {
+        plugin = "neovim/nvim-lspconfig";
+        opts = {
+          servers = {
+            nixd = {
+              settings = {
+                nixd = {
+                  nixpkgs = {
+                    expr = "import <nixpkgs> { }";
+                  };
+
+                  formatting = {
+                    command = [ "nixfmt" ];
+                  };
+                };
+              };
+            };
+
+            # Prevent the Nix extra from trying to configure nil.
+            nil_ls = {
+              enabled = false;
+            };
+          };
+        };
+      };
+    };
+
     # Additional packages (optional)
     extraPackages = with pkgs; [
       nixd
       nixfmt
+
+      # Python
+      pyright
+
+      # Rust
+      rust-analyzer
+
+      # C/C++ & CMake
+      llvmPackages.clang-tools
+      cmake-language-server
+
+      # Haskell
+      haskell-language-server
+
+      # Docker
+      dockerfile-language-server
+
+      # Plugins
+      vimPlugins.nvim-lspconfig
+      vimPlugins.nvim-treesitter.withAllGrammars
+
     ];
 
     treesitterParsers = with pkgs.vimPlugins.nvim-treesitter-parsers; [
