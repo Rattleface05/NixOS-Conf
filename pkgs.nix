@@ -55,6 +55,7 @@
     bottles
     qbittorrent-enhanced
     haguichi
+    logmein-hamachi
     btop
     htop
     btrfs-progs
