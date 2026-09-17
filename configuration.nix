@@ -219,7 +219,7 @@
   nix.settings.auto-optimise-store = true;
 
   # Max 2 jobs
-  nix.settings.max-jobs = 2;
+  # nix.settings.max-jobs = 2;
 
   # Nix LSP stuff
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

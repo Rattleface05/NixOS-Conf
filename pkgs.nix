@@ -54,6 +54,7 @@
     microcode-amd
     bottles
     qbittorrent-enhanced
+    haguichi
     btop
     htop
     btrfs-progs
