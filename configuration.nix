@@ -79,6 +79,9 @@
   #  excludePackages = with pkgs; [ xterm ];
   #};
 
+  # Drivers
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
   # Enable flatpak
   services.flatpak.enable = true;
 
