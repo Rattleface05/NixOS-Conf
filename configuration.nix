@@ -48,7 +48,7 @@
   # For lto extra power bitch
   # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
 
-  # Vanilla kernek
+  # Vanilla kernel
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   networking.hostName = "cratita"; # Define your hostname.
@@ -80,10 +80,7 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  #services.xserver = {
-  #  enable = false;
-  #  excludePackages = with pkgs; [ xterm ];
-  #};
+  services.xserver.enable = false;
 
   # Drivers
   services.xserver.videoDrivers = [ "amdgpu" ];
@@ -146,7 +143,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."dumi" = {

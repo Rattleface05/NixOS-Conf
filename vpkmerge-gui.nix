@@ -3,7 +3,6 @@
   stdenv,
   lib,
   fetchurl,
-  fetchFromGithub,
   dpkg,
   autoPatchelfHook,
   wrapGAppsHook3,
@@ -16,11 +15,11 @@
 }:
 let
   pname = "vpkmerge-gui";
-  version = "0.17.1";
+  version = "0.5.0";
 
   src = fetchurl {
     url = "https://github.com/Slush97/vpkmerge/releases/download/v${version}/vpkmerge_${version}_amd64.deb";
-    sha256 = "";
+    sha256 = "sha256-TZiiY1CCV8uCzigakhJTiIQZr+FddZOvz8KPRM74Zlw=";
   };
 
 in
@@ -62,7 +61,7 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "Combine multiple Valve Pak (.vpk) mods into one (Deadlock modding)";
+    description = "Combine multiple Valve Pak (.vpk) mods into one (Deadlock modding; desktop app, prebuilt)";
     homepage = "https://github.com/Slush97/vpkmerge";
     license = licenses.mit;
     platforms = [ "x86_64-linux" ];
