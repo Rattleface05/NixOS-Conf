@@ -107,6 +107,8 @@
 
     # Source2Viewer
     (pkgs.callPackage ./source2viewer.nix { })
+    # VPKMerge
+    (pkgs.callPackage ./vpkmerge-gui.nix { })
   ];
 
 }

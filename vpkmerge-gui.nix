@@ -1,0 +1,71 @@
+#vpkmerge
+{
+  stdenv,
+  lib,
+  fetchurl,
+  fetchFromGithub,
+  dpkg,
+  autoPatchelfHook,
+  wrapGAppsHook3,
+
+  hicolor-icon-theme,
+  webkitgtk_4_1,
+  gtk3,
+  glib,
+  libayatana-appindicator,
+}:
+let
+  pname = "vpkmerge-gui";
+  version = "0.17.1";
+
+  src = fetchurl {
+    url = "https://github.com/Slush97/vpkmerge/releases/download/v${version}/vpkmerge_${version}_amd64.deb";
+    sha256 = "";
+  };
+
+in
+stdenv.mkDerivation {
+  inherit pname version src;
+
+  nativeBuildInputs = [
+    dpkg
+    autoPatchelfHook
+    wrapGAppsHook3
+  ];
+
+  buildInputs = [
+    webkitgtk_4_1
+    gtk3
+    libayatana-appindicator
+    glib
+    hicolor-icon-theme
+  ];
+
+  unpackPhase = ''
+    dpkg-deb -x $src .
+  '';
+
+  installPhase = ''
+    runHook preInstall
+
+    # The .deb extracts into usr/
+    mkdir -p $out
+    cp -r usr/* $out/
+
+    # Drop any redundant documentation if needed
+    rm -rf $out/share/doc
+
+    # Create the convenience symlink from vpkmerge-gui to vpkmerge
+    ln -s $out/bin/vpkmerge-gui $out/bin/vpkmerge
+
+    runHook postInstall
+  '';
+
+  meta = with lib; {
+    description = "Combine multiple Valve Pak (.vpk) mods into one (Deadlock modding)";
+    homepage = "https://github.com/Slush97/vpkmerge";
+    license = licenses.mit;
+    platforms = [ "x86_64-linux" ];
+    maintainers = [ ];
+  };
+}
