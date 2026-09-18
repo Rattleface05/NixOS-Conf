@@ -97,12 +97,16 @@
     lact
     zellij
     tmux
+    wine
 
     # Nix User Repository pkgs
     nur.repos.forkprince.fluxer-canary-bin
 
     #AppImage bullshit
     (pkgs.callPackage ./antra.nix { })
+
+    # Source2Viewer
+    (pkgs.callPackage ./source2viewer.nix { })
   ];
 
 }
