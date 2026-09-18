@@ -88,8 +88,11 @@
   # Drivers
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Enable flatpak
-  services.flatpak.enable = true;
+  # Enable flatpak + use nix-flatpak to declare what flatpaks to install
+  services.flatpak = {
+    enable = true;
+    packages = [ ];
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.plasma-login-manager.enable = true;
@@ -117,6 +120,9 @@
 
   # ClamAV freshclam
   services.clamav.updater.enable = true;
+
+  # Hamachi
+  # services.logmein-hamachi.enable = true;
 
   # QBitTorrent
   #services.qbittorrent = {

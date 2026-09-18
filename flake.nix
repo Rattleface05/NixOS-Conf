@@ -25,6 +25,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/?ref=latest";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -32,6 +40,8 @@
       self,
       nixpkgs,
       nix-cachyos-kernel,
+      nix-flatpak,
+      nur,
       home-manager,
       lazyvim,
       aagl,
@@ -47,6 +57,9 @@
         modules = [
           # Your normal NixOS configuration
           ./configuration.nix
+
+          # Nix-Flatpak
+          nix-flatpak.nixosModules.nix-flatpak
 
           # CachyOS kernel overlay
           {
@@ -73,6 +86,9 @@
             programs.wavey-launcher.enable = false;
             programs.sleepy-launcher.enable = true;
           }
+
+          # Nix User Repo enabling
+          nur.modules.nixos.default
 
           home-manager.nixosModules.default
           {

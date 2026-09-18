@@ -7,6 +7,7 @@
     wget
     neovim
     discord
+    signal-desktop
     croc
     openssh
     alacritty
@@ -20,6 +21,7 @@
     kdePackages.kate
     kdePackages.filelight
     gcc
+    valgrind
     fastfetch
     cowsay
     fortune
@@ -64,13 +66,23 @@
     cmatrix
     gdu
     gimp
+    krita
     godot
+    localsend
+    tor-browser
+    vesktop
+    mpv
+    vlc
+    obsidian
+    kid3
     protonplus
     shadps4-qtlauncher
     r2modman
     prismlauncher
+    vintagestory
     pipx
     ani-cli
+    yt-dlp
     deadlock-mod-manager
     mangohud
     lutris
@@ -82,6 +94,12 @@
     wtfis
     onlyoffice-desktopeditors
     gpu-screen-recorder-ui
+    lact
+    zellij
+    tmux
+
+    # Nix User Repository pkgs
+    nur.repos.forkprince.fluxer-canary-bin
 
     #AppImage bullshit
     (pkgs.callPackage ./antra.nix { })
