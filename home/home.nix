@@ -172,11 +172,4 @@
     lfs.enable = true;
   };
 
-  # GitHub cli
-  programs.gh = {
-    enable = true;
-    gitCredentialHelper = {
-      enable = true;
-    };
-  };
 }
