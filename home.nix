@@ -124,4 +124,16 @@
     settings.updates.auto_update = true;
   };
 
+  # Lutris
+  programs.lutris.enable = true;
+  programs.lutris.extraPackages = with pkgs; [
+    mangohud
+    winetricks
+    gamemode
+    umu-launcher
+  ];
+  programs.lutris.protonPackages = with pkgs; [
+    proton-ge-bin
+  ];
+
 }
