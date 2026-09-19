@@ -145,7 +145,7 @@
       "flake-rebuild" = "nh os switch --impure";
       "flake-update" = "sudo nix flake update --flake $HOME/nixos-conf/";
     };
-    bashrcExtra = builtins.readFile ./bashrc;
+    bashrcExtra = builtins.readFile ./.bashrc;
   };
 
 }
