@@ -90,14 +90,15 @@
           # Nix User Repo enabling
           nur.modules.nixos.default
 
+          # Home Manager
           home-manager.nixosModules.default
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; }; # If you want access to inputs in your home.nix
+              extraSpecialArgs = { inherit inputs; };
               backupFileExtension = "-backup";
-              users.dumi = import ./home.nix; # replace <USERNAME> with your actual username
+              users.dumi = import ./home/home.nix;
 
             };
           }

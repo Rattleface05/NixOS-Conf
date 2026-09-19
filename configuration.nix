@@ -15,7 +15,7 @@
     /etc/nixos/hardware-configuration.nix
 
     # Packages
-    ./pkgs.nix
+    ./pkgs/pkgs.nix
 
     # Nix LD options
     ./nix-ld.nix
