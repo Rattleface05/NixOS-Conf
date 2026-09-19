@@ -170,12 +170,6 @@
   programs.git = {
     enable = false;
     lfs.enable = true;
-    settings = {
-      user = {
-        name = "dumi";
-        email = "andreidumitrescu7857@gmail.com";
-      };
-    };
   };
 
   # GitHub cli
