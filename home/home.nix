@@ -135,6 +135,7 @@
     ];
   };
 
+  # TLDR tealdeer implementation
   programs.tealdeer = {
     enable = true;
     enableAutoUpdates = true;
@@ -165,4 +166,28 @@
     bashrcExtra = builtins.readFile ./.bashrc;
   };
 
+  # Git
+  programs.git = {
+    enable = false;
+    lfs.enable = true;
+    settings = {
+      user = {
+        name = "dumi";
+        email = "andreidumitrescu7857@gmail.com";
+      };
+    };
+  };
+
+  # GitHub cli
+  programs.gh = {
+    enable = true;
+    hosts = {
+      "github.com" = {
+        user = "Rattleface05";
+      };
+      settings = {
+        git_protocol = "https";
+      };
+    };
+  };
 }
