@@ -125,15 +125,27 @@
   };
 
   # Lutris
-  programs.lutris.enable = true;
-  programs.lutris.extraPackages = with pkgs; [
-    mangohud
-    winetricks
-    gamemode
-    umu-launcher
-  ];
-  programs.lutris.protonPackages = with pkgs; [
-    proton-ge-bin
-  ];
+  programs.lutris = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mangohud
+      winetricks
+      gamemode
+      umu-launcher
+    ];
+    protonPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
+  # BASH
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      "flake-rebuild" = "nh os switch --impure";
+      "flake-update" = "sudo nix flake update --flake $HOME/nixos-conf/";
+    };
+    bashrcExtra = builtins.readFile ./bashrc;
+  };
 
 }
