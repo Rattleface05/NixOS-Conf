@@ -175,13 +175,8 @@
   # GitHub cli
   programs.gh = {
     enable = true;
-    hosts = {
-      "github.com" = {
-        user = "Rattleface05";
-      };
-      settings = {
-        git_protocol = "https";
-      };
+    gitCredentialHelper = {
+      enable = true;
     };
   };
 }
