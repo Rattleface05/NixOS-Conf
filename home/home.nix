@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   pkgs,
   inputs,
@@ -154,6 +155,8 @@
     protonPackages = with pkgs; [
       proton-ge-bin
     ];
+
+    steamPackage = osConfig.programs.steam.package;
   };
 
   # BASH
