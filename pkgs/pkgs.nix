@@ -19,6 +19,7 @@
     cargo
     vscode
     kdePackages.kate
+    kdePackages.sddm-kcm
     kdePackages.filelight
     gcc
     valgrind
@@ -102,6 +103,8 @@
     # Nix User Repository pkgs
     nur.repos.forkprince.fluxer-canary-bin
 
+    # YAMIS
+    (pkgs.callPackage ./yamis.nix { })
     #AppImage bullshit
     (pkgs.callPackage ./antra.nix { })
 

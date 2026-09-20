@@ -92,12 +92,23 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.plasma-login-manager.enable = true;
-  services.displayManager.plasma-login-manager.settings = {
-    Autologin = {
-      Session = "plasma.desktop";
-      User = "dumi";
+  # services.displayManager.plasma-login-manager.enable = true;
+  # services.displayManager.plasma-login-manager.settings = {
+  #   Autologin = {
+  #     Session = "plasma.desktop";
+  #     User = "dumi";
+  #   };
+  # };
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "dumi";
     };
+
   };
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -120,6 +131,10 @@
 
   # Hamachi
   # services.logmein-hamachi.enable = true;
+
+  # LACT
+  services.lact.enable = true;
+  hardware.amdgpu.overdrive.enable = true;
 
   # QBitTorrent
   #services.qbittorrent = {
