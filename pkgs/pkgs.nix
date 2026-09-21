@@ -36,6 +36,7 @@
     nix-bash-completions
     nixd
     python3
+    bat
     zip
     unzip
     haskell-language-server
