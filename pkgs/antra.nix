@@ -1,11 +1,11 @@
 { appimageTools, fetchurl }:
 let
   pname = "Antra";
-  version = "1.1.8";
+  version = "1.1.7";
 
   src = fetchurl {
     url = "https://github.com/anandprtp/Antra/releases/download/v${version}/Antra-Linux.AppImage";
-    hash = "sha256-g+x5ap/6nqdeVccdV1kz3kBg9y6fbplXIp+uBr75790=";
+    hash = "sha256-P1XJhD5NIC8JDQTC3dvwsfqk6oJ0BJyqNN8pTh0RnSk=";
   };
   appimageContents = appimageTools.extract { inherit pname version src; };
 in
