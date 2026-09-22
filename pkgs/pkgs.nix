@@ -22,6 +22,7 @@
     kdePackages.sddm-kcm
     kdePackages.filelight
     gcc
+    ventoy-full-qt
     valgrind
     fastfetch
     cowsay
