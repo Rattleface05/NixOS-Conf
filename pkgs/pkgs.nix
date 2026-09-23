@@ -91,6 +91,7 @@
     lutris
     pipes-rs
     rar
+    obsidian
     stremio-linux-shell
     speedtest-rs
     wtf

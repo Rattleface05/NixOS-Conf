@@ -184,7 +184,7 @@
   programs.steam.remotePlay.openFirewall = true;
   programs.steam.dedicatedServer.openFirewall = true;
 
-  # Gmamemode
+  # Gamemode
   programs.gamemode.enable = true;
 
   # GPU Screen Recoder
@@ -213,6 +213,16 @@
   programs.nh = {
     flake = "/home/dumi/nixos-conf";
     enable = true;
+  };
+
+  # Droidcam
+  programs.droidcam.enable = true;
+
+  # OBS Studio
+  programs.obs-studio = {
+    enable = true;
+    plugins = [ ];
+    enableVirtualCamera = true;
   };
 
   # Allow unfree packages
