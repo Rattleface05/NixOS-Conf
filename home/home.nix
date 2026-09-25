@@ -169,10 +169,4 @@
     bashrcExtra = builtins.readFile ./.bashrc;
   };
 
-  # Git
-  programs.git = {
-    enable = false;
-    lfs.enable = true;
-  };
-
 }
